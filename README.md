@@ -1,3 +1,5 @@
+`docker run -p 3000:3000 --name haiku-password-generator akashic/haiku-password-generator:latest`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
