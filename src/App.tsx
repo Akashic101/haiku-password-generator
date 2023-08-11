@@ -1,26 +1,85 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  Center,
+  MantineProvider,
+  ColorSchemeProvider,
+  ColorScheme,
+  Box,
+  SegmentedControl,
+  AppShell,
+  Header,
+  Group,
+} from "@mantine/core";
+import { useColorScheme, useLocalStorage } from "@mantine/hooks";
+import { IconSun, IconMoon } from "@tabler/icons-react";
+import GenerateButton from "./components/generateButton";
+import Logo from "./components/logo";
 
-function App() {
+export default function App() {
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: "mantine-color-scheme",
+    defaultValue: useColorScheme(),
+    getInitialValueInEffect: true,
+  });
+
+  const toggleColorScheme = (value?: ColorScheme): void =>
+    setColorScheme(value ?? (colorScheme === "dark" ? "light" : "dark"));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MantineProvider
+      theme={{ colorScheme: colorScheme }}
+      withGlobalStyles
+      withNormalizeCSS
+    >
+      {" "}
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+        children={undefined}
+      />
+      <AppShell
+        padding="md"
+        header={
+          <Header height={60}>
+            {
+              <Group sx={{ height: "100%" }} px={10} position="apart">
+                <Logo />
+                <SegmentedControl
+                  value={colorScheme}
+                  onChange={(value: "light" | "dark") =>
+                    toggleColorScheme(value)
+                  }
+                  data={[
+                    {
+                      value: "light",
+                      label: (
+                        <Center>
+                          <IconSun size="1rem" stroke={1.5} />
+                          <Box ml={10}>Light</Box>
+                        </Center>
+                      ),
+                    },
+                    {
+                      value: "dark",
+                      label: (
+                        <Center>
+                          <IconMoon size="1rem" stroke={1.5} />
+                          <Box ml={10}>Dark</Box>
+                        </Center>
+                      ),
+                    },
+                  ]}
+                />
+              </Group>
+            }
+          </Header>
+        }
+      >
+        {
+          <Center maw={100} h={800} mx="auto">
+            <GenerateButton />
+          </Center>
+        }
+      </AppShell>
+    </MantineProvider>
   );
 }
-
-export default App;

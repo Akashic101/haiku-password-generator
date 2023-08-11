@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@mantine/core": "^6.0.19",
+    "@mantine/hooks": "^6.0.19",
+    "@tabler/icons-react": "^2.30.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,6 +14,7 @@
     "@types/node": "^16.18.40",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "random-words": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -39,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
