@@ -49,7 +49,7 @@ export default function GenerateButton(): React.JSX.Element {
 
     const capitalizedfirstArray = firstLine.map(capitalizeWord);
     const capitalizedsecondArray = secondLine.map(capitalizeWord);
-    const capitalizedThirdArray = secondLine.map(capitalizeWord);
+    const capitalizedThirdArray = thirdLine.map(capitalizeWord);
 
     const combinedArray = [
       ...capitalizedfirstArray,
